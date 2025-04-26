@@ -105,4 +105,13 @@ linked_list1.add_last(1)
 linked_list1.add_last(3)
 linked_list1.add_last(5)
 
+linked_list1.insert(1, 2)
+linked_list1.add_first(0)
+linked_list1.add_last(7)
+linked_list1.print_list()
+print('\n')
+
+linked_list1.remove(2) 
+linked_list1.remove_first()
+linked_list1.remove_last()
 linked_list1.print_list()
