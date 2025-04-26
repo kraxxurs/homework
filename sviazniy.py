@@ -12,9 +12,10 @@ class Linked_list():
 
     def print_linkedlist(self):
         current = self.head
-        while current:
-            print(current.data)
-            current = current.next
+        if current:
+            for _ in range(self.length):
+                print(current.data, end = " <-> ")
+                current = current.next
 
     def add_first(self, data):
         new_node = Node(data)
@@ -106,16 +107,17 @@ class Linked_list():
 
     def remove_dublicate(self):
         current = self.head
-        seen = set()
+        seen = []
         new_list = Linked_list()
         
         while current:
             if current.data not in seen:
                 new_list.add_last(current.data)
-                seen.add(current.data)
+                seen.append(current.data)
             current = current.next
         
-        return new_list
+        self = new_list
+        return self
 
     def __iter__(self):
         return LinkedIterator(self.head, self.length)
@@ -141,7 +143,7 @@ class Linked_list():
             merged_list.add_last(current2.data)
             current2 = current2.next
 
-        return merged_list
+        merged_list.print_linkedlist()
 
 
 class LinkedIterator():
@@ -163,13 +165,20 @@ class LinkedIterator():
         return current.data
 
 linked_list1 = Linked_list()
-linked_list1.add_last(1)
-linked_list1.add_last(3)
+linked_list1.add_first(1)
+linked_list1.insert(1, 3)
 linked_list1.add_last(5)
+linked_list1.add_last(5)
+linked_list1.remove(2)
+linked_list1.remove_data(5)
 
 linked_list2 = Linked_list()
-linked_list2.add_last(1)
-linked_list2.add_last(2)
+linked_list2.add_last(6)
 linked_list2.add_last(4)
+linked_list2.add_last(2)
+linked_list2.remove_last()
+linked_list2.remove_first()
 
-print()
+
+linked_list1.remove_dublicate()
+linked_list1.merge(linked_list2)
