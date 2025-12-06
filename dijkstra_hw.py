@@ -9,9 +9,7 @@ class Graph():
         self.field = field
     
     def field_to_graph(self):
-        directions = [(-1, -1), (-1, 0), (-1, 1), 
-                     (0, -1),           (0, 1), 
-                     (1, -1),  (1, 0),  (1, 1)]
+        directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1),  (1, 0),  (1, 1)]
         
         for x in range(len(self.field)):
             for y in range(len(self.field[x])):
@@ -41,7 +39,7 @@ class Graph():
         ex, ey = end
         if sx != ex and sy != ey: # диагональое расстояние
             distance = round(math.sqrt(2 * (10 ** 2)), 2)
-        else: distance = 10 # горизон./вертикал. расстояние
+        else: distance = 10 # горизонт./вертикал. расстояние
         
         speed_start = self.speed_type(self.field[sx][sy])
         speed_end = self.speed_type(self.field[ex][ey])
@@ -91,15 +89,13 @@ class Graph():
         
         return distances[end], path
     
-    def find_time(self, start, end, output_path=False):
+    def find_time(self, start, end):
         if start not in self.edges or end not in self.edges:
             print("В точку невозможно попасть")
             return None
         
         total_time, path = self.dijkstra(start, end)
-        
-        if output_path:
-            self.print_path(path)
+        self.print_path(path)
         
         return round(total_time, 2)
     
@@ -144,6 +140,6 @@ start = (start_x, start_y)
 end = (end_x, end_y)
 
 print("\nМаршрут кратчайшего пути:")
-total_time = g.find_time(start, end, output_path=True)
+total_time = g.find_time(start, end)
 if total_time is not None:
     print(f"\nВремя от {start} до {end} (диагональ): {total_time}")
